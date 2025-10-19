@@ -73,4 +73,13 @@ npm run serve
 
 - GitHub Actions を使って `docs` をビルドし、`gh-pages` ブランチや GitHub Pages にデプロイするワークフローを作成することを推奨します。
 
+自動デプロイワークフロー
+
+このリポジトリには `docs` を自動でビルドして GitHub Pages にデプロイする GitHub Actions ワークフロー（`.github/workflows/deploy-docs.yml`）を追加しています。
+
+必要な設定:
+
+- GitHub リポジトリの `Settings > Pages` で `GitHub Actions` を使ったデプロイが許可されていることを確認してください（通常はデフォルトで OK です）。
+- ページ公開先やカスタムドメインを設定する場合はリポジトリの Pages 設定を適宜変更してください。
+
 以上が本リポジトリで Docusaurus を `docs/` 配下で完結させるために最小限必要な手順です。問題なければこのファイルをドキュメント目次に追加します。

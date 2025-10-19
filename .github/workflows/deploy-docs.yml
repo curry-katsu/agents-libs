@@ -3,6 +3,7 @@ name: Build and deploy Docusaurus docs
 on:
   push:
     branches: [ develop ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -31,21 +32,28 @@ jobs:
           cd docs
           npm run build
 
+      - name: Debug: show GITHUB_RUN_ID
+        run: echo "GITHUB_RUN_ID=$GITHUB_RUN_ID"
+
+      - name: Debug: list docs/build
+        run: |
+          cd docs
+          ls -la build || true
+
       - name: Upload artifact for GitHub Pages
-        id: upload-artifact
-        uses: actions/upload-artifact@v4
+        id: upload-pages-artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: pages
           path: docs/build
+      - name: Debug: upload completed
+        run: echo "upload-pages-artifact step finished"
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download pages artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: pages
+      - name: Debug: show GITHUB_RUN_ID in deploy job
+        run: echo "GITHUB_RUN_ID=$GITHUB_RUN_ID"
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1

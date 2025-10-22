@@ -3,8 +3,8 @@
 module.exports = {
   title: 'agents-libs',
   tagline: 'Agent libraries and utilities',
-  url: 'https://your-domain.com',
-  baseUrl: '/',
+  url: 'https://curry-katsu.github.io',
+  baseUrl: '/agents-libs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',

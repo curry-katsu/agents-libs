@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
 
       - name: Install dependencies (docs)
         run: |
@@ -32,28 +32,14 @@ jobs:
           cd docs
           npm run build
 
-      - name: Debug: show GITHUB_RUN_ID
-        run: echo "GITHUB_RUN_ID=$GITHUB_RUN_ID"
-
-      - name: Debug: list docs/build
-        run: |
-          cd docs
-          ls -la build || true
-
       - name: Upload artifact for GitHub Pages
-        id: upload-pages-artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: docs/build
-      - name: Debug: upload completed
-        run: echo "upload-pages-artifact step finished"
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Debug: show GITHUB_RUN_ID in deploy job
-        run: echo "GITHUB_RUN_ID=$GITHUB_RUN_ID"
-
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
